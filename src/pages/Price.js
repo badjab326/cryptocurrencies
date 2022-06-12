@@ -5,7 +5,7 @@ const Price = (props) => {
   // Capture coin symbol from route props
   const symbol = props.match.params.symbol;
 
-  const url = `http://rest-sandbox.coinapi.io/v1/exchangerate${symbol}/USD?apikey=${apiKey}`;
+  const url = `http://rest-sandbox.coinapi.io/v1/exchangerate/${symbol}/USD?apikey=${apiKey}`;
   // Initialize state to hold coin data received from API
   const [coin, setCoin] = useState(null);
   // Define a function to perform the AJAX
@@ -20,6 +20,10 @@ const Price = (props) => {
     getCoin()
   }, []);
   // define some functionality to show a loading message until data is loaded
+  const loading = () => {
+    return <h1>Now Loading...</h1>
+  }
+
   const loaded = () => {
     return (
       <div>
@@ -30,10 +34,6 @@ const Price = (props) => {
       </div>
     )
   };
-
-  const loading = () => {
-    return <h1>Now Loading...</h1>
-  }
 
     return coin ? loaded() : loading();
   };
